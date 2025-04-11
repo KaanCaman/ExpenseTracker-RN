@@ -1,11 +1,14 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React from "react";
+import { View, Text } from "react-native";
+import appTheme from "./src/theme";
+import { ThemeProvider } from "./src/context/ThemeProviderContext";
+import TestScreen from "./src/screen/TestScreen";
 
 function App(): React.JSX.Element {
   return (
-    <View style={{ flex: 1 }}>
-      <Text style={{ fontSize: 36 }}>IMPLEMENT ME</Text>
-    </View>
+    <ThemeProvider>
+      <TestScreen />
+    </ThemeProvider>
   );
 }
 

@@ -1,16 +1,17 @@
 {
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "eslint.format.enable": true,
   "editor.insertSpaces": true,
   "editor.codeActionsOnSave": {
     "source.addMissingImports.ts": "never",
-    "source.fixAll.eslint": "never",
+    "source.fixAll.eslint": "explicit",
     "source.organizeImports": "never",
     "source.sortImports": "never",
     "source.removeUnused.ts": "never",
-    "source.removeUnusedImports": "never"
+    "source.removeUnusedImports": "never",
+    
   },
   "files.eol": "\n",
   "workbench.tree.indent": 16,
@@ -50,5 +51,5 @@
     "**/os/**": true,
     "**/android/**": true,
     "**/dist/**": true
-  }
+  },
 }
