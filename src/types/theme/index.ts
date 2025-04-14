@@ -1,5 +1,3 @@
-import appTheme from "../../theme";
-
 /**
  * Spacing Size - Aralık Boyutları
  * @property tiny - 4px   (Çok küçük boşluklar)
@@ -144,6 +142,24 @@ export interface ColorPalette {
    * @default #E5E5EA
    */
   divider: HexColor;
+
+  /**
+   * TextSecondary color / İkincil text rengi
+   * @default #757575
+   */
+  textSecondary: HexColor;
+
+  /**
+   * placeholder color / placeholder rengi
+   * @default #A0A0A0
+   */
+  placeholder: HexColor;
+
+  /**
+   *  Modal out overlay color / Modal dış overlay rengi
+   * @default #A0A0A0
+   */
+  modalOverlay: string;
 }
 
 // Diğer tipler aynı kalacak...
