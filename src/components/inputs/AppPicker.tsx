@@ -124,8 +124,6 @@ const Picker = ({
    */
   return (
     <View style={{ width: "100%" }}>
-      /** * Seçim yapmak için tıklanabilir buton. * Touchable button to trigger
-      selection modal. */
       <TouchableOpacity
         style={[themedStyles.pickerButton, style]}
         onPress={() => setModalVisible(true)}

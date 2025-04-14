@@ -4,14 +4,93 @@ import { useTheme } from "../hooks/useTheme";
 import AppButton from "../components/buttons/AppButton";
 import AppDateTimePicker from "../components/inputs/AppDatetimePicker";
 import Picker from "../components/inputs/AppPicker";
+import {
+  BillIcon,
+  EntertainmentIcon,
+  FoodIcon,
+  HealthIcon,
+  HomeIcon,
+  RentIcon,
+  ShoppingIcon,
+  TransportIcon,
+  CreditIcon,
+  VacationIcon,
+  HobbyIcon,
+  InvestmentIcon,
+  OtherIcon,
+  ClothingIcon,
+} from "../icon/categories";
+const size = 80;
 const categoryItems = [
-  { label: "Gıda", value: "food" },
-  { label: "Ulaşım", value: "transport" },
-  { label: "Fatura", value: "bill" },
+  {
+    label: "cl",
+    value: "cl",
+    display: <ClothingIcon color="#FFF" width={size} height={size} />,
+  },
+  {
+    label: "other",
+    value: "other",
+    display: <OtherIcon color="#FFF" width={size} height={size} />,
+  },
+  {
+    label: "inves",
+    value: "inves",
+    display: <InvestmentIcon color="#FFF" width={size} height={size} />,
+  },
+  {
+    label: "hobby",
+    value: "hobby",
+    display: <HobbyIcon color="#FFF" width={size} height={size} />,
+  },
+  {
+    label: "vaction",
+    value: "vaction",
+    display: <VacationIcon color="#FFF" width={size} height={size} />,
+  },
+  {
+    label: "credit",
+    value: "credit",
+    display: <CreditIcon color="#FFF" width={size} height={size} />,
+  },
+  {
+    label: "Home",
+    value: "home",
+    display: <HomeIcon color="#FFF" width={size} height={size} />,
+  },
+  {
+    label: "Gıda",
+    value: "food",
+    display: <FoodIcon color="#FFF" width={size} height={size} />,
+  },
+  {
+    label: "Ulaşım",
+    value: "transport",
+    display: <TransportIcon color="#FFF" width={size} height={size} />,
+  },
+  {
+    label: "Fatura",
+    value: "bill",
+    display: <BillIcon color="#FFF" width={size} height={size} />,
+  },
   {
     label: "Eğlence",
     value: "entertainment",
-    display: <Text style={{ fontSize: 48 }}>Ge</Text>,
+    display: <EntertainmentIcon color="#FFF" width={size} height={size} />,
+  },
+  {
+    label: "sa",
+    value: "saa",
+    display: <HealthIcon color="#FFF" width={size} height={size} />,
+  },
+  {
+    label: "bas",
+    value: "cas",
+    display: <ShoppingIcon color="#FFF" width={size} height={size} />,
+  },
+  {
+    label: "rent",
+    value: "rent",
+    display: <RentIcon color="#FFF" width={size} height={size} />,
   },
 ];
 
