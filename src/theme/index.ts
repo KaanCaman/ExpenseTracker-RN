@@ -1,6 +1,6 @@
 import { ThemeType } from "../types/theme";
 
-const appTheme:ThemeType = {
+const appTheme: ThemeType = {
   colors: {
     light: {
       // Primary brand color / Ana marka rengi
@@ -22,7 +22,15 @@ const appTheme:ThemeType = {
       // Warning state color / Uyarı durum rengi
       warning: "#FF9500",
       // Divider color / Ayırıcı çizgi rengi
-      divider: "#E5E5EA"
+      divider: "#E5E5EA",
+
+      // Light mode Secondary text / ikincil text rengi
+      textSecondary: "#757575",
+
+      // Light mode placholder / placeholder rengi
+      placeholder: "#A0A0A0",
+
+      modalOverlay: "rgba(0,0,0,0.5)", // Modal dış overlay rengi
     },
     dark: {
       // Dark mode primary color / Karanlık mod ana renk
@@ -44,8 +52,16 @@ const appTheme:ThemeType = {
       // Dark warning color / Karanlık mod uyarı rengi
       warning: "#FF9F0A",
       // Dark divider color / Karanlık mod ayırıcı rengi
-      divider: "#2C2C2E"
-    }
+      divider: "#2C2C2E",
+
+      // Dark mode Secondary text / Karanlık ikincil text rengi
+      textSecondary: "#9E9E9E",
+
+      // Dark mode placholder / Karanlık için placeholder rengi
+      placeholder: "#B0B0B0",
+
+      modalOverlay: "rgba(0,0,0,0.5)", // Modal dış overlay rengi
+    },
   },
   typography: {
     // Font family stack / Yazı tipi ailesi
@@ -60,7 +76,7 @@ const appTheme:ThemeType = {
       // Large text (subheadings) / Büyük metin (alt başlıklar)
       large: 24,
       // Extra large text (headings) / Çok büyük metin (başlıklar)
-      xlarge: 32
+      xlarge: 32,
     },
     weights: {
       // Regular weight / Normal kalınlık
@@ -68,8 +84,8 @@ const appTheme:ThemeType = {
       // Medium weight / Orta kalınlık
       medium: 500,
       // Bold weight / Kalın
-      bold: 700
-    }
+      bold: 700,
+    },
   },
   spacing: {
     // Tiny spacing (4px) / Çok küçük boşluk
@@ -81,7 +97,7 @@ const appTheme:ThemeType = {
     // Large spacing (24px) / Büyük boşluk
     large: 24,
     // Huge spacing (32px) / Çok büyük boşluk
-    huge: 32
+    huge: 32,
   },
   borderRadius: {
     // Small radius (buttons) / Küçük yuvarlak (butonlar)
@@ -91,8 +107,8 @@ const appTheme:ThemeType = {
     // Large radius (modals) / Büyük yuvarlak (modallar)
     large: 16,
     // Full circle / Tam yuvarlak
-    full: 999
-  }
+    full: 999,
+  },
 } as const; // Freezes the object for type safety / Nesneyi tip güvenliği için dondurur
 
 export default appTheme;
