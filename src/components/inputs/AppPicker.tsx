@@ -135,25 +135,26 @@ const Picker = ({
         onPress={() => setModalVisible(true)}
       >
         <View style={themedStyles.buttonContent}>
-          {children ??
-            (selectedValue ? (
-              selectedItem?.display ?? (
-                <Text
-                  style={[themedStyles.labelText, { color: theme.colors.text }]}
-                >
-                  {selectedItem?.label}
-                </Text>
-              )
-            ) : (
+          {children ? (
+            children
+          ) : !selectedItem ? (
+            <Text
+              style={[
+                themedStyles.labelText,
+                { color: theme.colors.placeholder },
+              ]}
+            >
+              {placeholder}
+            </Text>
+          ) : (
+            selectedItem?.display ?? (
               <Text
-                style={[
-                  themedStyles.labelText,
-                  { color: theme.colors.placeholder },
-                ]}
+                style={[themedStyles.labelText, { color: theme.colors.text }]}
               >
-                {placeholder}
+                {selectedItem?.label}
               </Text>
-            ))}
+            )
+          )}
         </View>
       </TouchableOpacity>
       <Modal
@@ -188,10 +189,6 @@ const Picker = ({
                           : "transparent",
                     },
                   ]}
-                  /**
-                   * Bir öğe seçildiğinde değeri iletir ve modal'ı kapatır.
-                   * When an item is selected, it passes the value and closes the modal.
-                   */
                   onPress={() => {
                     onValueChange(item.value);
                     setModalVisible(false);

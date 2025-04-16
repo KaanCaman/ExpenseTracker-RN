@@ -4,13 +4,23 @@ import Home from "../screen/Home";
 import appTheme from "../theme";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { uiText } from "../utils/uiText";
-import { Button, TouchableOpacity } from "react-native";
+
+import AddExpense from "../screen/AddExpense";
+import { ExpenseItem } from "../types/expenseItemType";
+import Category from "../screen/Category";
+import { PickerItemType } from "../types/pickerItemType";
+import ExpenseDetail from "../screen/ExpenseDetail";
 
 export type RootStackParamList = {
   Home: {
-    navigation: any;
+    newExpense?: ExpenseItem;
+    filterCategory?: string;
+    categories?: PickerItemType[];
+    deleteExpenseId?: string;
   };
-
+  AddExpense: { categories?: PickerItemType[] }; // Gider ekle sayfası // Add expense screen
+  ExpenseDetail: { expense: ExpenseItem }; // Gider detayı sayfası // Expense detail screen
+  Category: { categories?: PickerItemType[] }; // Kategoriler sayfası // Category screen
   ThemeProp: ThemeProps;
 };
 
@@ -52,6 +62,15 @@ const RootStack = () => {
     >
       <Stack.Screen name="Home">
         {(props) => <Home {...props} theme={theme} />}
+      </Stack.Screen>
+      <Stack.Screen name="AddExpense">
+        {(props) => <AddExpense {...props} theme={theme} />}
+      </Stack.Screen>
+      <Stack.Screen name="Category">
+        {(props) => <Category {...props} theme={theme} />}
+      </Stack.Screen>
+      <Stack.Screen name="ExpenseDetail">
+        {(props) => <ExpenseDetail {...props} theme={theme} />}
       </Stack.Screen>
     </Stack.Navigator>
   );
