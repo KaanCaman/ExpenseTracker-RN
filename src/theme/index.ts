@@ -3,6 +3,7 @@ import { ThemeType } from "../types/theme";
 const appTheme: ThemeType = {
   colors: {
     light: {
+      scheme: "light",
       // Primary brand color / Ana marka rengi
       primary: "#FF6C47",
       // Secondary color for accents / İkincil vurgu rengi
@@ -33,6 +34,7 @@ const appTheme: ThemeType = {
       modalOverlay: "rgba(0,0,0,0.5)", // Modal dış overlay rengi
     },
     dark: {
+      scheme: "dark",
       // Dark mode primary color / Karanlık mod ana renk
       primary: "#FF8C6A",
       // Dark mode secondary color / Karanlık mod ikincil renk

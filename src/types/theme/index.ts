@@ -84,6 +84,12 @@ export interface FontWeightsType {
 
 export interface ColorPalette {
   /**
+   * Color scheme / Renk şeması
+   * `dark`` or `light`
+   */
+  scheme: "dark" | "light";
+
+  /**
    * Primary brand color / Ana marka rengi
    * @default #FF6C47
    */
