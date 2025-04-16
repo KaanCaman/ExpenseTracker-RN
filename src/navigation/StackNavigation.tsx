@@ -1,12 +1,20 @@
 import { useState } from "react";
-import { AppTheme } from "../types/theme";
+import { AppTheme, ThemeProps } from "../types/theme";
 import Home from "../screen/Home";
 import appTheme from "../theme";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { uiText } from "../utils/uiText";
+import { Button, TouchableOpacity } from "react-native";
 
-type RootStackParamList = {
-  Home: undefined;
+export type RootStackParamList = {
+  Home: {
+    navigation: any;
+  };
+
+  ThemeProp: ThemeProps;
 };
+
+type ScreenOptions = {};
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -32,11 +40,19 @@ const RootStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: theme.colors.background },
-        
+        headerStyle: {
+          backgroundColor: theme.colors.primary,
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+        title: uiText.appName,
       }}
     >
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Home">
+        {(props) => <Home {...props} theme={theme} />}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 };

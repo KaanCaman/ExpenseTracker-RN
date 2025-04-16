@@ -1,6 +1,7 @@
 import { PickerItemType } from "../../types/pickerItemType";
 
 export const categories: PickerItemType[] = [
+  { label: "Hepsi", value: "all" },
   { label: "Gıda", value: "food" },
   { label: "Ulaşım", value: "transport" },
   { label: "Fatura", value: "bill" },
