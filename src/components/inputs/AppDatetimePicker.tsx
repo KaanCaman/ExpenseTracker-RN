@@ -11,13 +11,14 @@ import dayjs, { Dayjs } from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import { useTheme } from "../../hooks/useTheme";
+import { ThemeProps } from "../../types/theme";
 
 // dayjs için karşılaştırma eklentilerini aktif et / enable dayjs comparison plugins
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
 
 // Bileşen özelliklerinin tipi / Component props type definition
-type Props = {
+type Props = ThemeProps & {
   value: Date; // Seçili tarih / selected date
   onChange: (date: Date) => void; // Tarih değişiminde çağrılır / called when date changes
   onSelect?: (date: Date) => void; // Seç butonunda çağrılır / called when "select" button pressed
@@ -46,9 +47,12 @@ const AppDateTimePicker = memo(
     disabled = false,
     minimumDate = dayjs().subtract(7, "day").startOf("day").toDate(),
     maximumDate = dayjs().add(7, "day").endOf("day").toDate(),
+    theme,
     style,
   }: Props) => {
-    const { theme } = useTheme(); // Tema hook'u / Theme hook
+    // @Deprecated
+    // Global state will not be used. / Global state kullanılmayacak.
+    // const { theme } = useTheme();
 
     const selectedDate = dayjs(value); // Seçili tarihi dayjs'e çevir / convert selected date to dayjs
     const minDate = dayjs(minimumDate);

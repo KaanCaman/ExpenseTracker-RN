@@ -192,3 +192,8 @@ export interface AppTheme {
   spacing: SpacingType;
   borderRadius: BorderRadiusType;
 }
+// Theme props
+export interface ThemeProps {
+  theme: AppTheme;
+  toggleTheme?: () => void;
+}

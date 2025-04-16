@@ -1,14 +1,32 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useState, useMemo } from "react";
+import { View } from "react-native";
 import appTheme from "./src/theme";
-import { ThemeProvider } from "./src/context/ThemeProviderContext";
 import TestScreen from "./src/screen/TestScreen";
+import { AppTheme } from "./src/types/theme";
+
+const themes = {
+  dark: {
+    ...appTheme,
+    colors: { ...appTheme.colors.dark },
+  },
+  light: {
+    ...appTheme,
+    colors: { ...appTheme.colors.light },
+  },
+};
 
 function App(): React.JSX.Element {
+  const { dark, light } = themes;
+
+  const [theme, setTheme] = useState<AppTheme>(light);
+
+  const toggleTheme = () =>
+    setTheme((prev) => (prev.colors.scheme === "dark" ? light : dark));
+
   return (
-    <ThemeProvider>
-      <TestScreen />
-    </ThemeProvider>
+    <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
+      <TestScreen theme={theme} toggleTheme={toggleTheme} />
+    </View>
   );
 }
 
