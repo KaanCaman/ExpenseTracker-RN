@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import React, { memo } from "react";
 import { useTheme } from "../../hooks/useTheme";
+import { ThemeProps } from "../../types/theme";
 
 /**
  * Button Props Type / Buton Prop Türü
@@ -19,7 +20,7 @@ import { useTheme } from "../../hooks/useTheme";
  * @property {boolean} [disabled] - Disabled state / Devre dışı durumu
  * @property {boolean} [loading] - Loading state / Yüklenme durumu
  */
-type AppButtonProps = {
+type AppButtonProps = ThemeProps & {
   title: string;
   onPress?: () => void;
   buttonStyle?: StyleProp<ViewStyle>;
@@ -41,8 +42,11 @@ const AppButton = memo(
     buttonStyle,
     disabled = false,
     loading = false,
+    theme,
   }: AppButtonProps) => {
-    const { theme } = useTheme();
+    // @Deprecated
+    // Global state will not be used. / Global state kullanılmayacak.
+    // const { theme } = useTheme();
 
     // Calculate button opacity / Buton opaklığını hesapla
     const buttonOpacity = disabled || loading ? 0.6 : 1;
