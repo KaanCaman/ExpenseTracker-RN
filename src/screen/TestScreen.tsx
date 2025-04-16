@@ -21,7 +21,9 @@ import {
   ClothingIcon,
   DefaultIcon,
 } from "../icon/categories";
+import { ThemeProps } from "../types/theme";
 const size = 80;
+type Props = ThemeProps & {};
 const categoryItems = [
   {
     label: "custom",
@@ -100,9 +102,8 @@ const categoryItems = [
   },
 ];
 
-const TestScreen = () => {
+const TestScreen = ({ theme, toggleTheme }: Props) => {
   const [date, setDate] = useState<Date>(new Date());
-  const { theme, toggleThemeMode } = useTheme();
 
   const [selectedCategory, setSelectedCategory] = useState<string | number>("");
   return (
@@ -121,9 +122,14 @@ const TestScreen = () => {
         onValueChange={(value) => setSelectedCategory(value)}
         placeholder="Kategori seçiniz"
         searchable={true}
+        theme={theme}
       />
-      <AppDateTimePicker value={date} onChange={(date) => setDate(date)} />
-      <AppButton title="Test Button" onPress={toggleThemeMode} />
+      <AppDateTimePicker
+        theme={theme}
+        value={date}
+        onChange={(date) => setDate(date)}
+      />
+      <AppButton theme={theme} title="Test Button" onPress={toggleTheme} />
     </View>
   );
 };

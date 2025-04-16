@@ -9,16 +9,18 @@ import {
   ViewStyle,
 } from "react-native";
 import { useTheme } from "../../hooks/useTheme";
+import { ThemeProps } from "../../types/theme";
 
 /**
  * Custom TextInput Props / Özel Metin Girişi Özellikleri
  * @property {string} [error] - Error message / Hata mesajı
  * @property {StyleProp<ViewStyle>} [containerStyle] - Outer container style / Dış kapsayıcı stili
  */
-type AppTextInputProps = TextInputProps & {
-  error?: string;
-  containerStyle?: StyleProp<ViewStyle>;
-};
+type AppTextInputProps = ThemeProps &
+  TextInputProps & {
+    error?: string;
+    containerStyle?: StyleProp<ViewStyle>;
+  };
 
 /**
  * Themed TextInput Component / Tema Destekli Metin Girişi Bileşeni
@@ -32,9 +34,14 @@ const AppTextInput = memo(
     containerStyle,
     style,
     placeholder,
+    theme,
     ...props
   }: AppTextInputProps) => {
-    const { theme } = useTheme();
+    // @Deprecated
+    // Global state will not be used. / Global state kullanılmayacak.
+    // const { theme } = useTheme();
+
+    //
     const [isFocused, setIsFocused] = useState(false);
 
     /**
