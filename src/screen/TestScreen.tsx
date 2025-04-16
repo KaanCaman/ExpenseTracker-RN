@@ -19,9 +19,15 @@ import {
   InvestmentIcon,
   OtherIcon,
   ClothingIcon,
+  DefaultIcon,
 } from "../icon/categories";
 const size = 80;
 const categoryItems = [
+  {
+    label: "custom",
+    value: "custom",
+    display: <DefaultIcon color="#FFF" width={size} height={size} />,
+  },
   {
     label: "cl",
     value: "cl",

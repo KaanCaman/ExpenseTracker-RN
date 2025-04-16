@@ -1,6 +1,7 @@
 import BillIcon from "./BillIcon";
 import ClothingIcon from "./ClothingIcon";
 import CreditIcon from "./CreditIcon";
+import DefaultIcon from "./DefaultIcon";
 import EntertainmentIcon from "./EntertainmentIcon";
 import FoodIcon from "./FoodIcon";
 import HealthIcon from "./HealthIcon";
@@ -28,4 +29,5 @@ export {
   HobbyIcon,
   InvestmentIcon,
   OtherIcon,
+  DefaultIcon,
 };
