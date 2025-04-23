@@ -32,10 +32,10 @@ export const appReducer = (
       };
 
     // Add Category
-    case ReducerActionType.addCategory:
+    case ReducerActionType.updateCategories:
       return {
         ...state,
-        categories: [action.payload, ...state.categories],
+        categories: action.payload,
       };
 
     // Reset Categories

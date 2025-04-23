@@ -19,7 +19,7 @@ export enum ReducerActionType {
   resetExpense = "RESET_EXPENSES",
 
   // Kategori ekleme aksiyonu // Add category action
-  addCategory = "ADD_CATEGORY",
+  updateCategories = "UPDATE_CATEGORIES",
 
   // Kategorileri sıfırlama aksiyonu // Reset all categories
   resetCategories = "RESET_CATEGORIES",
@@ -53,9 +53,9 @@ export interface ResetExpenseAction {
 }
 
 // Kategori ekleme aksiyonu tipi // Add category action type
-export interface AddCategoryAction {
-  type: ReducerActionType.addCategory;
-  payload: PickerItemType;
+export interface UpdateCategoriesAction {
+  type: ReducerActionType.updateCategories;
+  payload: PickerItemType[];
 }
 
 // Kategorileri sıfırlama aksiyonu tipi // Reset all categories type
@@ -78,6 +78,6 @@ export type GlobalAction =
   | UpdateExpenseAction
   | DeleteExpenseAction
   | ResetExpenseAction
-  | AddCategoryAction
+  | UpdateCategoriesAction
   | ResetCategoriesAction
   | ResetAllStateAction;

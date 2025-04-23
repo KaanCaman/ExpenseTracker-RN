@@ -31,8 +31,8 @@ export const useCustomStateReducer = () => {
    * Yeni bir kategori ekler
    * Adds a new category to the state
    */
-  const addCategory = (category: PickerItemType) => {
-    dispatch({ type: ReducerActionType.addCategory, payload: category });
+  const updateCategories = (category: PickerItemType[]) => {
+    dispatch({ type: ReducerActionType.updateCategories, payload: category });
   };
 
   /**
@@ -46,6 +46,6 @@ export const useCustomStateReducer = () => {
     addExpense,
     getState,
     deleteExpense,
-    addCategory,
+    updateCategories,
   };
 };
