@@ -1,4 +1,4 @@
-import { Alert, Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React, { useState } from "react";
 import { useTheme } from "../hooks/useTheme";
 import AppButton from "../components/buttons/AppButton";
@@ -21,9 +21,8 @@ import {
   ClothingIcon,
   DefaultIcon,
 } from "../icon/categories";
-import { ThemeProps } from "../types/theme";
+
 const size = 80;
-type Props = ThemeProps & {};
 const categoryItems = [
   {
     label: "custom",
@@ -102,8 +101,9 @@ const categoryItems = [
   },
 ];
 
-const TestScreen = ({ theme, toggleTheme }: Props) => {
+const TestScreen = () => {
   const [date, setDate] = useState<Date>(new Date());
+  const { theme, toggleThemeMode } = useTheme();
 
   const [selectedCategory, setSelectedCategory] = useState<string | number>("");
   return (
@@ -122,14 +122,9 @@ const TestScreen = ({ theme, toggleTheme }: Props) => {
         onValueChange={(value) => setSelectedCategory(value)}
         placeholder="Kategori seçiniz"
         searchable={true}
-        theme={theme}
       />
-      <AppDateTimePicker
-        theme={theme}
-        value={date}
-        onChange={(date) => setDate(date)}
-      />
-      <AppButton theme={theme} title="Test Button" onPress={toggleTheme} />
+      <AppDateTimePicker value={date} onChange={(date) => setDate(date)} />
+      <AppButton title="Test Button" onPress={toggleThemeMode} />
     </View>
   );
 };
