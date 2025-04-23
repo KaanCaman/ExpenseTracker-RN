@@ -2,23 +2,22 @@ import React from "react";
 import { View, Text, ScrollView, StyleSheet, Alert } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/StackNavigation";
-import { ThemeProps } from "../types/theme";
 
 import { uiText } from "../utils/uiText";
 
 import AppButton from "../components/buttons/AppButton";
 import { getExpenseIcon } from "../utils/getIconByCategory";
+import { useTheme } from "../hooks/useTheme";
 
-type Props = ThemeProps &
-  NativeStackScreenProps<RootStackParamList, "ExpenseDetail">;
+type Props = NativeStackScreenProps<RootStackParamList, "ExpenseDetail">;
 
-const ExpenseDetail: React.FC<Props> = ({ navigation, route, theme }) => {
-  const { spacing, typography, colors, borderRadius } = theme;
+const ExpenseDetail: React.FC<Props> = ({ navigation, route }) => {
+  const { spacing, typography, colors, borderRadius } = useTheme().theme;
   const { expense } = route.params;
   const icon = getExpenseIcon(
     expense.category,
-    theme.typography.sizes.xlarge,
-    theme.colors.primary
+    typography.sizes.xlarge,
+    colors.primary
   );
 
   // Silme onayı ve Home'a deleteExpenseId ile dönme
@@ -128,7 +127,7 @@ const ExpenseDetail: React.FC<Props> = ({ navigation, route, theme }) => {
       ) : null}
 
       {/* Gideri Sil butonu / Delete Expense button */}
-      <AppButton title={uiText.delete} onPress={confirmDelete} theme={theme} />
+      <AppButton title={uiText.delete} onPress={confirmDelete} />
     </ScrollView>
   );
 };

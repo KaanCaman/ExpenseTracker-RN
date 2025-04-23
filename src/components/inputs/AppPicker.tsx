@@ -13,9 +13,8 @@ import {
 } from "react-native";
 import { useTheme } from "../../hooks/useTheme";
 import { PickerItemType } from "../../types/pickerItemType";
-import { ThemeProps } from "../../types/theme";
 
-type PickerProps = ThemeProps & {
+type PickerProps = {
   items: PickerItemType[];
   selectedValue?: string | number;
   onValueChange: (value: string | number) => void;
@@ -37,11 +36,8 @@ const Picker = ({
   searchable = false,
   style,
   children,
-  theme,
 }: PickerProps) => {
-  // @Deprecated
-  // Global state will not be used. / Global state kullanılmayacak.
-  // const { theme } = useTheme();
+  const { theme } = useTheme();
 
   //
   const [modalVisible, setModalVisible] = useState(false);

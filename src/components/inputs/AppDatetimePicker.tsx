@@ -15,15 +15,16 @@ import dayjs, { Dayjs } from "dayjs";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import isBetween from "dayjs/plugin/isBetween"; // isBetween eklentisi import edildi // Import isBetween plugin
-import { ThemeProps } from "../../types/theme";
+
 import { uiText } from "../../utils/uiText";
+import { useTheme } from "../../hooks/useTheme";
 
 // Dayjs eklentilerini etkinleştiriyoruz // Enable dayjs comparison and isBetween plugins
 dayjs.extend(isSameOrAfter); // isSameOrAfter eklentisini etkinleştir // Enable isSameOrAfter plugin
 dayjs.extend(isSameOrBefore); // isSameOrBefore eklentisini etkinleştir // Enable isSameOrBefore plugin
 dayjs.extend(isBetween); // isBetween eklentisini etkinleştir // Enable isBetween plugin
 
-type Props = ThemeProps & {
+type Props = {
   value: Date; // Seçili tarih // Selected date
   onChange: (date: Date) => void; // Tarih değiştiğinde çağrılır // Called when date changes
   onSelect?: (date: Date) => void; // Seç butonuna basıldığında çağrılır // Called when "Select" button is pressed
@@ -53,9 +54,11 @@ const AppDateTimePicker = memo(
     disabled = false, // Pasif kontrol // Disable control
     minimumDate = dayjs().subtract(7, "day").startOf("day").toDate(), // 7 gün öncesi // 7 days before
     maximumDate = dayjs().add(7, "day").endOf("day").toDate(), // 7 gün sonrası // 7 days after
-    theme,
     style,
   }: Props) => {
+    //
+    const { theme } = useTheme();
+
     // Modal görünürlüğü ve geçici tarih state'i // State for modal visibility and temporary date
     const [modalVisible, setModalVisible] = useState(false);
     const [tempDate, setTempDate] = useState(dayjs(value)); // Geçici tarih // Temporary date

@@ -10,7 +10,6 @@ import {
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RouteProp } from "@react-navigation/native";
 import { RootStackParamList } from "../navigation/StackNavigation";
-import { ThemeProps } from "../types/theme";
 import { ExpenseItem } from "../types/expenseItemType";
 import { expenses } from "../data/mock/expenses";
 import { categories as InitalCategories } from "../data/mock/categories";
@@ -20,18 +19,18 @@ import AddIcon from "../icon/AddIcon";
 import CategoryIcon from "../icon/CategoryIcon";
 import ExpenseListItem from "../components/expenses/ExpenseItemList";
 import ExpenseStatistics from "../components/expenses/ExpenseStatistics";
+import { useTheme } from "../hooks/useTheme";
 
 // Route param tipi // Route prop type
 type HomeRouteProp = RouteProp<RootStackParamList, "Home">;
 
 // Props tipi: tema, navigation ve route // Props type: theme, navigation and route
-type Props = ThemeProps &
-  NativeStackScreenProps<RootStackParamList, "Home"> & {
-    route: HomeRouteProp;
-  };
+type Props = NativeStackScreenProps<RootStackParamList, "Home"> & {
+  route: HomeRouteProp;
+};
 
-const Home: React.FC<Props> = ({ navigation, route, theme }) => {
-  const { spacing, borderRadius, colors, typography } = theme;
+const Home: React.FC<Props> = ({ navigation, route }) => {
+  const { spacing, borderRadius, colors, typography } = useTheme().theme;
 
   // Yeni giderleri saklamak için state // State to hold dynamic expense list
   const [expenseList, setExpenseList] = useState<ExpenseItem[]>(expenses);
@@ -92,7 +91,6 @@ const Home: React.FC<Props> = ({ navigation, route, theme }) => {
   // Her öğeyi render eden fonksiyon // Function to render each item
   const renderItem = ({ item }: { item: ExpenseItem }) => (
     <ExpenseListItem
-      theme={theme}
       onPress={() => navigation.navigate("ExpenseDetail", { expense: item })}
       item={item}
     />
@@ -138,7 +136,7 @@ const Home: React.FC<Props> = ({ navigation, route, theme }) => {
     <View style={styles.container}>
       {/* Show statistics / Istatistik göster   */}
       <View>
-        <ExpenseStatistics expenses={expenseList} theme={theme} />
+        <ExpenseStatistics expenses={expenseList} />
       </View>
 
       {/* Kategori filtre barı // Category filter bar */}
@@ -153,7 +151,6 @@ const Home: React.FC<Props> = ({ navigation, route, theme }) => {
               key={index}
               label={category.label ?? "undefineds"}
               active={selectedCategory === category.value}
-              theme={theme}
               onPress={() => setSelectedCategory(category.value.toString())}
             />
           ))}

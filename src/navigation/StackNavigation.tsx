@@ -1,7 +1,4 @@
-import { useState } from "react";
-import { AppTheme, ThemeProps } from "../types/theme";
 import Home from "../screen/Home";
-import appTheme from "../theme";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { uiText } from "../utils/uiText";
 
@@ -10,6 +7,8 @@ import { ExpenseItem } from "../types/expenseItemType";
 import Category from "../screen/Category";
 import { PickerItemType } from "../types/pickerItemType";
 import ExpenseDetail from "../screen/ExpenseDetail";
+import { useTheme } from "../hooks/useTheme";
+import { Switch } from "react-native";
 
 export type RootStackParamList = {
   Home: {
@@ -21,31 +20,12 @@ export type RootStackParamList = {
   AddExpense: { categories?: PickerItemType[] }; // Gider ekle sayfası // Add expense screen
   ExpenseDetail: { expense: ExpenseItem }; // Gider detayı sayfası // Expense detail screen
   Category: { categories?: PickerItemType[] }; // Kategoriler sayfası // Category screen
-  ThemeProp: ThemeProps;
 };
-
-type ScreenOptions = {};
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const themes = {
-  dark: {
-    ...appTheme,
-    colors: { ...appTheme.colors.dark },
-  },
-  light: {
-    ...appTheme,
-    colors: { ...appTheme.colors.light },
-  },
-};
-
 const RootStack = () => {
-  const { dark, light } = themes;
-
-  const [theme, setTheme] = useState<AppTheme>(light);
-
-  const toggleTheme = () =>
-    setTheme((prev) => (prev.colors.scheme === "dark" ? light : dark));
+  const { theme, toggleThemeMode, isDark } = useTheme();
 
   return (
     <Stack.Navigator
@@ -58,19 +38,29 @@ const RootStack = () => {
           fontWeight: "bold",
         },
         title: uiText.appName,
+        headerRight: () => (
+          <Switch
+            onValueChange={toggleThemeMode}
+            value={isDark}
+            ios_backgroundColor={theme.colors.primary}
+            trackColor={{
+              false: theme.colors.primary,
+              true: theme.colors.primary,
+            }}
+            thumbColor={`${theme.colors.background}`}
+          />
+        ),
       }}
     >
-      <Stack.Screen name="Home">
-        {(props) => <Home {...props} theme={theme} />}
-      </Stack.Screen>
+      <Stack.Screen name="Home">{(props) => <Home {...props} />}</Stack.Screen>
       <Stack.Screen name="AddExpense">
-        {(props) => <AddExpense {...props} theme={theme} />}
+        {(props) => <AddExpense {...props} />}
       </Stack.Screen>
       <Stack.Screen name="Category">
-        {(props) => <Category {...props} theme={theme} />}
+        {(props) => <Category {...props} />}
       </Stack.Screen>
       <Stack.Screen name="ExpenseDetail">
-        {(props) => <ExpenseDetail {...props} theme={theme} />}
+        {(props) => <ExpenseDetail {...props} />}
       </Stack.Screen>
     </Stack.Navigator>
   );

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View, StyleSheet, Alert, ScrollView, Text } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/StackNavigation";
-import { ThemeProps } from "../types/theme";
 
 // UI
 import AppTextInput from "../components/inputs/AppTextInput";
@@ -14,12 +13,12 @@ import { ExpenseItem } from "../types/expenseItemType";
 
 import { uiText } from "../utils/uiText";
 import { categories as initialCategory } from "../data/mock/categories";
+import { useTheme } from "../hooks/useTheme";
 
-type Props = ThemeProps &
-  NativeStackScreenProps<RootStackParamList, "AddExpense"> & {};
+type Props = NativeStackScreenProps<RootStackParamList, "AddExpense"> & {};
 
-const AddExpense = ({ navigation, theme, route }: Props) => {
-  const { spacing, colors, typography, borderRadius } = theme;
+const AddExpense = ({ navigation, route }: Props) => {
+  const { spacing, colors, typography, borderRadius } = useTheme().theme;
 
   // Form alanları için state'ler
   const [name, setName] = useState("");
@@ -89,7 +88,6 @@ const AddExpense = ({ navigation, theme, route }: Props) => {
           placeholder={uiText.expenseName}
           value={name}
           onChangeText={setName}
-          theme={theme}
         />
       </View>
       <View style={styles.amountContainer}>
@@ -109,7 +107,6 @@ const AddExpense = ({ navigation, theme, route }: Props) => {
             }
           }}
           style={styles.amountInput}
-          theme={theme}
         />
         <Text
           style={{
@@ -125,7 +122,6 @@ const AddExpense = ({ navigation, theme, route }: Props) => {
         <AppDatetimePicker
           value={date}
           onChange={(newDate) => setDate(newDate)}
-          theme={theme}
           label={uiText.selectDateAndTime}
         />
       </View>
@@ -136,7 +132,6 @@ const AddExpense = ({ navigation, theme, route }: Props) => {
           onValueChange={(value) => setCategory(value.toString())}
           placeholder={uiText.selectCategory}
           searchable={true}
-          theme={theme}
         />
       </View>
       <View style={styles.noteContainer}>
@@ -144,10 +139,9 @@ const AddExpense = ({ navigation, theme, route }: Props) => {
           placeholder="Not ekleyin (isteğe bağlı)"
           value={note}
           onChangeText={setNote}
-          theme={theme}
         />
       </View>
-      <AppButton title="Gideri Kaydet" onPress={handleSave} theme={theme} />
+      <AppButton title="Gideri Kaydet" onPress={handleSave} />
     </ScrollView>
   );
 };

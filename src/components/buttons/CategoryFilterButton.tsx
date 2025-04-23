@@ -1,21 +1,19 @@
-// CategoryFilterButton.tsx
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
-import { ThemeProps } from "../../types/theme";
+import { useTheme } from "../../hooks/useTheme";
 
 type CategoryFilterButtonProps = {
   label: string;
   active: boolean;
   onPress: () => void;
-} & ThemeProps;
+};
 
 const CategoryFilterButton = ({
   label,
   active,
   onPress,
-  theme,
 }: CategoryFilterButtonProps) => {
-  const { spacing, borderRadius, colors, typography } = theme;
+  const { spacing, borderRadius, colors, typography } = useTheme().theme;
 
   const styles = StyleSheet.create({
     button: {

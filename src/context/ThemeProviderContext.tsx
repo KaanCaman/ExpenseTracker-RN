@@ -8,10 +8,14 @@ import { StatusBar } from "react-native";
  * - `theme`: Aktif tema nesnesi / Active theme object
  * - `toggleThemeMode`: Dark/Light mod geçiş fonksiyonu / Toggles dark/light mode
  */
-export const ThemeContext = createContext<{
-  theme: AppTheme;
-  toggleThemeMode: () => void;
-} | undefined>(undefined);
+export const ThemeContext = createContext<
+  | {
+      theme: AppTheme;
+      toggleThemeMode: () => void;
+      isDark: boolean;
+    }
+  | undefined
+>(undefined);
 
 interface ThemeProviderProps {
   children?: React.ReactNode;
@@ -24,14 +28,14 @@ interface ThemeProviderProps {
  */
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   // Dark mod state'i / Dark mode state
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(true); // Boolean daha optimize ✅
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(true); // Boolean daha optimize
 
   // Mod değiştirme fonksiyonu / Toggle function
   const toggleTheme = () => setIsDarkMode((prev) => !prev);
 
   // Aktif renk paleti / Active color palette
-  const activeColors = isDarkMode 
-    ? appTheme.colors.dark 
+  const activeColors = isDarkMode
+    ? appTheme.colors.dark
     : appTheme.colors.light;
 
   return (
@@ -39,13 +43,12 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       value={{
         theme: { ...appTheme, colors: activeColors },
         toggleThemeMode: toggleTheme,
+        isDark: isDarkMode,
       }}
     >
       <StatusBar
         animated={true}
-        barStyle={
-          isDarkMode ? "light-content" :  "dark-content"
-        }
+        barStyle={isDarkMode ? "light-content" : "dark-content"}
       />
       {children}
     </ThemeContext.Provider>
