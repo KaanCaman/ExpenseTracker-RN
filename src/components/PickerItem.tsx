@@ -2,20 +2,20 @@ import React, { memo } from "react";
 import { Text, StyleSheet, View } from "react-native";
 import { PickerItemType } from "../types/pickerItemType";
 import { useTheme } from "../hooks/useTheme";
-import { ThemeProps } from "../types/theme";
+
 
 /**
  * PickerItem bileşeni, bir seçim listesindeki tek bir öğeyi temsil eder.
  * The PickerItem component represents a single item in the picker list.
  */
-type Props = ThemeProps & {
+type Props ={
   item: PickerItemType; // Seçim öğesi verisi / Picker item data
 };
 
-const PickerItem = ({ item, theme }: Props) => {
+const PickerItem = ({ item }: Props) => {
   // @Deprecated
   // Global state will not be used. / Global state kullanılmayacak.
-  // const { theme } = useTheme();
+  const { theme } = useTheme();
 
   const styles = StyleSheet.create({
     item: {

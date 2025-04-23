@@ -9,19 +9,19 @@ import {
 } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../navigation/StackNavigation";
-import { ThemeProps } from "../types/theme";
+
 import { uiText } from "../utils/uiText";
 import { PickerItemType } from "../types/pickerItemType";
+import { useTheme } from "../hooks/useTheme";
 
 export type CategoryRouteParams = {
   categories: PickerItemType[];
 };
 
-type Props = ThemeProps &
-  NativeStackScreenProps<RootStackParamList, "Category">;
+type Props = NativeStackScreenProps<RootStackParamList, "Category">;
 
-const Category: React.FC<Props> = ({ navigation, route, theme }) => {
-  const { spacing, borderRadius, colors, typography } = theme;
+const Category: React.FC<Props> = ({ navigation, route }) => {
+  const { spacing, borderRadius, colors, typography } = useTheme().theme;
 
   // Home'dan gelen kategori listesi // Categories passed from Home
   const initialList = route.params?.categories ?? [];

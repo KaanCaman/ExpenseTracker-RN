@@ -1,21 +1,21 @@
-// ExpenseListItem.tsx
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { ExpenseItem } from "../../types/expenseItemType";
-import { ThemeProps } from "../../types/theme";
-import { getExpenseIcon } from "../../utils/getIconByCategory";
 
-type ExpenseListItemProps = ThemeProps & {
+import { getExpenseIcon } from "../../utils/getIconByCategory";
+import { useTheme } from "../../hooks/useTheme";
+
+type ExpenseListItemProps = {
   item: ExpenseItem;
   onPress: () => void;
 };
 
-const ExpenseListItem = ({ item, onPress, theme }: ExpenseListItemProps) => {
-  const { spacing, borderRadius, typography, colors } = theme;
+const ExpenseListItem = ({ item, onPress }: ExpenseListItemProps) => {
+  const { spacing, borderRadius, typography, colors } = useTheme().theme;
   const icon = getExpenseIcon(
     item.category,
     typography.sizes.xlarge,
-    theme.colors.primary
+    colors.primary
   );
 
   const styles = StyleSheet.create({

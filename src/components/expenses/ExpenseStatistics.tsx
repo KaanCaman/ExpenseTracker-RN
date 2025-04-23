@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { ExpenseItem } from "../../types/expenseItemType";
-import { ThemeProps } from "../../types/theme";
+import { useTheme } from "../../hooks/useTheme";
 
 type ExpenseStatisticsProps = {
   expenses: ExpenseItem[];
-} & ThemeProps;
+};
 
-const ExpenseStatistics = ({ expenses, theme }: ExpenseStatisticsProps) => {
-  const { spacing, borderRadius, colors, typography } = theme;
+const ExpenseStatistics = ({ expenses }: ExpenseStatisticsProps) => {
+  const { spacing, borderRadius, colors, typography } = useTheme().theme;
 
   const totalExpense = expenses.reduce(
     (sum: number, expense: ExpenseItem) => sum + expense.amount,
